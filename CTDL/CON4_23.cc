@@ -1,31 +1,36 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
+using ll = long long;
 
-long long b_pow(int  n,long long p)
+
+ll binary_pow(int a, int n)
 {
-    if(p == 0) return 1;
-    if(p == 1) return 2;
-    long long x = b_pow(2, p/ 2);
-    if(p%2) return 2 * x * x;
+    if(n == 0) return 1;
+    if(n == 1) return 2;
+    ll x = binary_pow(a, n / 2);
+    if(n % 2) return x * x * a;
     else return x * x;
 }
-int main()
+
+
+int main(int argc, char** argv)
 {
-    int t; cin >> t;
+    int  t; cin >> t;
     while(t--)
     {
-        int n, k; cin >> n >> k;
-        long long x = b_pow(2, n)/2;
+        int n, k;
+        cin >> n >> k;
+        ll x = binary_pow(2, n) / 2;
         while(1)
         {
             if(n == 1)
             {
-                cout << 1;
+                cout << 1 << endl;
                 break;
             }
             if(x == k)
             {
-                cout << n;
+                cout << n << endl;
                 break;
             }
             if(k > x)
@@ -35,7 +40,5 @@ int main()
             n--;
             x/=2;
         }
-        cout << endl;
-
     }
 }

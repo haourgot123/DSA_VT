@@ -2,7 +2,8 @@
 using namespace std;
 
 
-int main()
+
+int main(int argc, char** argv)
 {
     int t; cin >> t;
     while(t--)
@@ -10,17 +11,18 @@ int main()
         int k;
         string a, b;
         cin >> k >> a >> b;
-        while(a.size() > b.size()) b = '0' + b;
-        while(a.size() < b.size()) a = '0' + a;
-        string res = "";
+        while(a.size() < b.size()) a = "0" + a;
+        while(a.size() > b.size()) b = "0" + b;
         int nho = 0;
+        string s = "";
         for(int i = a.size() - 1; i >= 0; i--)
         {
-            int so = (a[i] - '0') + (b[i] - '0') + nho;
-            res = char(so%k + '0') + res;
-            nho = so/k;
-        }  
-        if(nho) res = char(nho + '0')+ res;
-        cout << res << endl;
+            int q = (a[i] - '0') + (b[i] - '0') + nho;
+            s += to_string(q % k);
+            nho = q / k;
+        }
+        if(nho) s += to_string(nho);
+        reverse(s.begin(), s.end());
+        cout << s << endl;
     }
 }
